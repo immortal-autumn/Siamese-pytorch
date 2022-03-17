@@ -1,0 +1,7 @@
+/datasets/
+/model_data/
+/logs/
+/logs_cpy
+/testdata
+/.idea/
+*.pyc
