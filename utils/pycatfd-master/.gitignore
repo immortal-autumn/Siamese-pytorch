@@ -1,0 +1,4 @@
+.idea/
+training_data/
+*.pyc
+.DS_Store

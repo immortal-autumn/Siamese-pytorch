@@ -27,6 +27,8 @@ for i in range(len(tests)):
         if animal2 == animal1:
             num_of_true += 1
         atest.append((path1, path2, animal1 == animal2))  # Ground Truth
+
+
 # print(num_of_true)
 
 def evaluation(predict, truth):
@@ -81,5 +83,3 @@ for i in model_path.glob('*.pth'):
 print(evaluation_feedback)
 with open('output.json', 'w+') as f:
     json.dump(evaluation_feedback, f, indent=4)
-
-
