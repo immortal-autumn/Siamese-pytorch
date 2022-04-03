@@ -1,4 +1,5 @@
 import json
+import random
 from pathlib import Path
 
 from PIL import Image
@@ -19,6 +20,7 @@ for animal_name in test_set.glob('*'):
 # TODO: Make the testset balanced
 num_of_true = 0
 atest = []
+false_test = []
 # Construct test sets and ground truth
 for i in range(len(tests)):
     for j in range(i + 1, len(tests)):
@@ -26,8 +28,16 @@ for i in range(len(tests)):
         path2, animal2 = tests[j]
         if animal2 == animal1:
             num_of_true += 1
-        atest.append((path1, path2, animal1 == animal2))  # Ground Truth
+            atest.append((path1, path2, animal1 == animal2))  # Ground Truth
+        else:
+            false_test.append((path1, path2, animal1 == animal2))
 
+atest.extend(random.sample(false_test, k=num_of_true))
+
+
+# print(len(atest), num_of_true)
+#
+# print(num_of_true, '/', len(atest))
 
 # print(num_of_true)
 
@@ -54,15 +64,11 @@ def main(model_pth):
     prediction = []
     process = 0
     total = len(atest)
+    print(total)
     for tup in atest:
         # if process == 1000:
         #     break
         p1, p2, res = tup
-        if not res:
-            if num_of_true_dp != 0:
-                num_of_true_dp = num_of_true_dp - 1
-            else:
-                continue
         img_1 = Image.open(p1)
         img_2 = Image.open(p2)
         Y.append(res)

@@ -30,6 +30,10 @@ for k, v in result.items():
 
     print(index, loss, val_loss, accuracy)
 
+print(f"Max Loss: {max(losses)}\nMin Loss: {min(losses)}")
+print(f"Max Validation Loss: {max(val_losses)}\nMin Validation Loss: {min(val_losses)}")
+print(f"Max Accuracy: {max(accuracies)} - {accuracies.index(max(accuracies))}"
+      f"\nMin Accuracy: {min(accuracies)} - {accuracies.index(min(accuracies))}")
 
 plt.xlabel('Index')
 plt.ylabel('Value')
